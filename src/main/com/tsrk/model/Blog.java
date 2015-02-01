@@ -4,11 +4,14 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+
 import tsrk.model.enums.Status;
 import tsrk.model.enums.Visibility;
 
 public class Blog {
-	
 	private long blogId;
 	private String blogTitle;
 	private String blogCategory;
@@ -24,6 +27,8 @@ public class Blog {
 	public long getBlogId() {
 		return blogId;
 	}
+	@Id(name="blog_id")
+	@GeneratedValue(GenerationType.AUTO)
 	public void setBlogId(long blogId) {
 		this.blogId = blogId;
 	}
@@ -31,13 +36,14 @@ public class Blog {
 	public String getBlogTitle() {
 		return blogTitle;
 	}
-	
+	@Column(name="title")
 	public void setBlogTitle(String blogTitle) {
 		this.blogTitle = blogTitle;
 	}
 	public String getBlogCategory() {
 		return blogCategory;
 	}
+	@Column(name="category")
 	public void setBlogCategory(String blogCategory) {
 		this.blogCategory = blogCategory;
 	}
@@ -45,6 +51,7 @@ public class Blog {
 	public Blob getBlogImage() {
 		return blogImage;
 	}
+	@LOB
 	public void setBlogImage(Blob blogImage) {
 		this.blogImage = blogImage;
 	}
@@ -52,42 +59,51 @@ public class Blog {
 	public String getBlogContent() {
 		return blogContent;
 	}
+	@Column(name="content", length="500")
 	public void setBlogContent(String blogContent) {
 		this.blogContent = blogContent;
 	}
 	public int getBlogUser() {
 		return blogUser;
 	}
+	@Column(name="user_id")
 	public void setBlogUser(int blogUser) {
 		this.blogUser = blogUser;
 	}
 	public Date getPublishDate() {
 		return publishDate;
 	}
+	@Column(name="publish_date")
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 	public Status getBlogStatus() {
 		return blogStatus;
 	}
+	@Column(name="status")
 	public void setBlogStatus(Status blogStatus) {
 		this.blogStatus = blogStatus;
 	}
 	public Visibility getBlogVisibility() {
 		return blogVisibility;
 	}
+	@Column(name="visibility")
 	public void setBlogVisibility(Visibility blogVisibility) {
 		this.blogVisibility = blogVisibility;
 	}
 	public ArrayList<Comment> getComments() {
 		return comments;
 	}
+	@OneToMany()
+	@JoinColumn(name="blog_id")
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
 	}
 	public ArrayList<Like> getLikes() {
 		return likes;
 	}
+	@OneToMany()
+	@JoinColumn(name="like_id")
 	public void setLikes(ArrayList<Like> likes) {
 		this.likes = likes;
 	}
