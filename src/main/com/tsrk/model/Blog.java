@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
@@ -94,7 +95,7 @@ public class Blog {
 	public ArrayList<Comment> getComments() {
 		return comments;
 	}
-	@OneToMany()
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="blog_id")
 	public void setComments(ArrayList<Comment> comments) {
 		this.comments = comments;
@@ -102,7 +103,7 @@ public class Blog {
 	public ArrayList<Like> getLikes() {
 		return likes;
 	}
-	@OneToMany()
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="like_id")
 	public void setLikes(ArrayList<Like> likes) {
 		this.likes = likes;
