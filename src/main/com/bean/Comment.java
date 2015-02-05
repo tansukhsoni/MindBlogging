@@ -1,10 +1,14 @@
-package tsrk.model;
+package main.com.bean;
 
 import java.util.ArrayList;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 public class Comment {
 	
@@ -17,7 +21,8 @@ public class Comment {
 	public long getCommentId() {
 		return commentId;
 	}
-	@Id(name="comment_id")
+	@Id
+	@Column(name="comment_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
@@ -25,7 +30,7 @@ public class Comment {
 	public String getContent() {
 		return content;
 	}
-	@Column(name="content", length="500")
+	@Column(name="content", length=500)
 	public void setContent(String content) {
 		this.content = content;
 	}
@@ -47,7 +52,7 @@ public class Comment {
 		return likeLists;
 	}
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinedColumn(name="comment_id")
+	@JoinColumn(name="comment_id")
 	public void setLikeLists(ArrayList<Like> likeLists) {
 		this.likeLists = likeLists;
 	}

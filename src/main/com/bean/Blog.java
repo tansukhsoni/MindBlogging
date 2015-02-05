@@ -1,16 +1,20 @@
-package tsrk.model;
+package main.com.bean;
 
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
-import tsrk.model.enums.Status;
-import tsrk.model.enums.Visibility;
+import main.com.tsrk.model.enums.Status;
+import main.com.tsrk.model.enums.Visibility;
 
 public class Blog {
 	private long blogId;
@@ -28,8 +32,9 @@ public class Blog {
 	public long getBlogId() {
 		return blogId;
 	}
-	@Id(name="blog_id")
-	@GeneratedValue(GenerationType.AUTO)
+	@Id
+	@Column(name="blog_id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public void setBlogId(long blogId) {
 		this.blogId = blogId;
 	}
@@ -52,7 +57,7 @@ public class Blog {
 	public Blob getBlogImage() {
 		return blogImage;
 	}
-	@LOB
+	@Lob
 	public void setBlogImage(Blob blogImage) {
 		this.blogImage = blogImage;
 	}
@@ -60,7 +65,7 @@ public class Blog {
 	public String getBlogContent() {
 		return blogContent;
 	}
-	@Column(name="content", length="500")
+	@Column(name="content", length=500)
 	public void setBlogContent(String blogContent) {
 		this.blogContent = blogContent;
 	}
@@ -107,6 +112,10 @@ public class Blog {
 	@JoinColumn(name="like_id")
 	public void setLikes(ArrayList<Like> likes) {
 		this.likes = likes;
+	}
+	
+	public static void main(String a[]){
+		System.out.println("hello world!!");
 	}
 	
 	

@@ -1,4 +1,4 @@
-package tsrk.model;
+package main.com.bean;
 
 import java.util.ArrayList;
 import java.util.Date;

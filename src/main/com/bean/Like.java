@@ -1,6 +1,6 @@
-package tsrk.model;
+package main.com.bean;
 
-import tsrk.model.enums.LikeCategory;
+import main.com.tsrk.model.enums.LikeCategory;
 
 public class Like {
 	

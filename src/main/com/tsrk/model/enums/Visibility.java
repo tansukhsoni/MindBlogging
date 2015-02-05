@@ -1,4 +1,4 @@
-package tsrk.model.enums;
+package main.com.tsrk.model.enums;
 
 public enum Visibility {
 	
